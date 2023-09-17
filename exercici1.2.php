@@ -84,9 +84,86 @@
                     }
                 }
                 elseif ($i <= 9) { // set destructor position
-                    $i++;
+                    if ($orientation == 0) { // horizontal
+                        if ($columPosition + 3 > $colums - 2) { // it have to go to left
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition][$columPosition - 1] == 0 && $matrix[$rowPosition][$columPosition - 2] == 0) {
+                                $matrix[$rowPosition][$columPosition] = 3;
+                                $matrix[$rowPosition][$columPosition - 1] = 3;
+                                $matrix[$rowPosition][$columPosition - 2] = 3;
+                                $i++;
+                            }
+                        } else { // always go to right
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition][$columPosition + 1] == 0 && $matrix[$rowPosition][$columPosition + 2] == 0) {
+                                $matrix[$rowPosition][$columPosition] = 3;
+                                $matrix[$rowPosition][$columPosition + 1] = 3;
+                                $matrix[$rowPosition][$columPosition + 2] = 3;
+                                $i++;
+                            }
+                        }
+                    }
+                    else { // vertical
+                        if ($rowPosition + 3 > $rows - 2) { // it have to go up
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition - 1][$columPosition] == 0 && $matrix[$rowPosition - 2][$columPosition] == 0) {
+                                $matrix[$rowPosition][$columPosition] = 3;
+                                $matrix[$rowPosition - 1][$columPosition] = 3;
+                                $matrix[$rowPosition - 2][$columPosition] = 3;
+                                $i++;
+                            }
+                        } else { // always go down
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition + 1][$columPosition] == 0 && $matrix[$rowPosition + 2][$columPosition] == 0) {
+                                $matrix[$rowPosition][$columPosition] = 3;
+                                $matrix[$rowPosition + 1][$columPosition] = 3;
+                                $matrix[$rowPosition + 2][$columPosition] = 3;
+                                $i++;
+                            }
+                        }
+                    }
                 } else { // set aircraft carrier position
-                    $i++;
+                    if ($orientation == 0) { // horizontal
+                        if ($columPosition + 4 > $colums - 2) { // it have to go to left
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition][$columPosition - 1] == 0 && $matrix[$rowPosition][$columPosition - 2] == 0 && 
+                                $matrix[$rowPosition][$columPosition - 3] == 0) {
+
+                                $matrix[$rowPosition][$columPosition] = 4;
+                                $matrix[$rowPosition][$columPosition - 1] = 4;
+                                $matrix[$rowPosition][$columPosition - 2] = 4;
+                                $matrix[$rowPosition][$columPosition - 3] = 4;
+                                $i++;
+                            }
+                        } else { // always go to the right
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition][$columPosition + 1] == 0 && $matrix[$rowPosition][$columPosition + 2] == 0 && 
+                                $matrix[$rowPosition][$columPosition + 3] == 0) {
+                                
+                                $matrix[$rowPosition][$columPosition] = 4;
+                                $matrix[$rowPosition][$columPosition + 1] = 4;
+                                $matrix[$rowPosition][$columPosition + 2] = 4;
+                                $matrix[$rowPosition][$columPosition + 3] = 4;
+                                $i++;
+                            }
+                        }
+                    } else { // vertical 
+                        if ($rowPosition + 4 > $rows - 2) { // it have to go to up
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition - 1][$columPosition] == 0 && $matrix[$rowPosition - 2][$columPosition] == 0 && 
+                                $matrix[$rowPosition - 3][$columPosition] == 0) {
+                                
+                                $matrix[$rowPosition][$columPosition] = 4;
+                                $matrix[$rowPosition - 1][$columPosition] = 4;
+                                $matrix[$rowPosition - 2][$columPosition] = 4;
+                                $matrix[$rowPosition - 3][$columPosition] = 4;
+                                $i++;
+                            }
+                        } else { // always go down
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition + 1][$columPosition] == 0 && $matrix[$rowPosition + 2][$columPosition] == 0 && 
+                                $matrix[$rowPosition + 3][$columPosition] == 0) {
+                                
+                                $matrix[$rowPosition][$columPosition] = 4;
+                                $matrix[$rowPosition + 1][$columPosition] = 4;
+                                $matrix[$rowPosition + 2][$columPosition] = 4;
+                                $matrix[$rowPosition + 3][$columPosition] = 4;
+                                $i++;
+                            }
+                        }
+                    }
                 }
             }
 
