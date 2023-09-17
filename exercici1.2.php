@@ -24,6 +24,9 @@
 
             $boats = [1, 2 ,3 ,4]; // fragata, submarino, destructor, portaviones
 
+            $colums = 11;
+            $rows = 11;
+
             $matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -36,7 +39,6 @@
                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
 
             // 4 fragates, 3 submarins, 2 destructors i 1 portaavions.
-            echo rand(0,1);
             $totalBoats = 10;
             for ($i = 1; $i <= $totalBoats;) {
                 $rowPosition = rand(0, 9);
@@ -49,7 +51,37 @@
                     }
                 }
                 elseif ($i <= 7) { // set submarine position
-                    $i++;
+                    if ($orientation == 0) { // horizontal
+                        if ($columPosition == $colums - 2) { // this is the final column
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition][$columPosition - 1] == 0) {
+                                $matrix[$rowPosition][$columPosition] = 2;
+                                $matrix[$rowPosition][$columPosition - 1] = 2;
+                                $i++;
+                            }
+                        }
+                        else { // the column can be the first or else
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition][$columPosition + 1] == 0) {
+                                $matrix[$rowPosition][$columPosition] = 2;
+                                $matrix[$rowPosition][$columPosition + 1] = 2;
+                                $i++;
+                            }
+                        }
+                    } else { // vertical
+                        if ($rowPosition == $rows - 2) { // this is the final row
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition - 1][$columPosition] == 0) {
+                                $matrix[$rowPosition][$columPosition] = 2;
+                                $matrix[$rowPosition - 1][$columPosition] = 2;
+                                $i++;
+                            }
+                        }
+                        else { // the row can be the first or else
+                            if ($matrix[$rowPosition][$columPosition] == 0 && $matrix[$rowPosition + 1][$columPosition] == 0) {
+                                $matrix[$rowPosition][$columPosition] = 2;
+                                $matrix[$rowPosition + 1][$columPosition] = 2;
+                                $i++;
+                            }
+                        }
+                    }
                 }
                 elseif ($i <= 9) { // set destructor position
                     $i++;
@@ -59,17 +91,15 @@
             }
 
             echo "  <table>";
-            $colums = 11;
-            $rows = 11;
             $limit = "N";
             $asciiValue = 65;
-            for ($row = 1; $row <= $rows; $row++) { // for each row
+            for ($row = 0; $row <= $rows - 1; $row++) { // for each row
                 echo "\t\t<tr>\n";
                 for ($colum = 0; $colum <= $colums - 1; $colum++) { // for each colum
-                    if ($row == 1 && $colum == 0) {
+                    if ($row == 0 && $colum == 0) {
                         echo "\t\t<td></td>\n";
                     }
-                    elseif ($row == 1) { // if this is the first row
+                    elseif ($row == 0) { // if this is the first row
                         echo "\t\t<td>$colum</td>\n";
                     }
                     elseif ($colum == 0) {
@@ -77,7 +107,15 @@
                         echo "\t\t<td>$letter</td>\n";
                         $asciiValue++;
                     } else {
-                        echo "\t\t<td></td>\n";
+                        $columPosition = $colum - 1;
+                        $rowPosition = $row - 1;
+                        if ($matrix[$rowPosition][$columPosition] == 0) {
+                            echo "\t\t<td></td>\n";
+                        } else {
+                            $valor = $matrix[$rowPosition][$columPosition];
+                            echo "\t\t<td>$valor</td>\n";
+                        }
+                        
                     }
                 }
                 echo "\t\t</tr>\n";
