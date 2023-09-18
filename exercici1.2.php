@@ -4,10 +4,35 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Exercici 1.2</title>
+        <link href="https://fonts.googleapis.com/css?family=Gruppo" rel="stylesheet">
         <!-- <link rel="stylesheet" href="styles.css"> -->
         <style>
+            body {
+                background-image: url('./carrier.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                color: white;
+                font-family: "Gruppo";
+                font-size: 20px;
+            }
+
+            .autocenter {
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Horizontally center */
+                align-items: center; /* Vertically center */
+                height: 100vh; /* 100% of viewport height */
+                backdrop-filter: blur(10px);
+                width: 1000px;
+                height: 800px;
+                margin: auto;
+                border: 1px white solid;
+                border-radius: 50px;
+                /*background-color: rgba(0, 0, 0, 0.4);*/
+            }
+
             table, td {
-                border: 1px solid black;
+                border: 1px solid white;
                 border-collapse: collapse;
                 padding: 3px;
                 text-align: center;
@@ -20,6 +45,7 @@
     </head>
     <body>
         <?php
+            echo "  <div class=\"autocenter\">";
             echo "  <h1>Batalla Naval</h1>";
 
             $boats = [1, 2 ,3 ,4]; // fragata, submarino, destructor, portaviones
@@ -198,6 +224,7 @@
                 echo "\t\t</tr>\n";
             }
             echo "  </table>";
+            echo "  </div>";
         ?>
     </body>
 </html>
