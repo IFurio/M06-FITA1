@@ -14,6 +14,7 @@
                 color: white;
                 font-family: "Gruppo";
                 font-size: 20px;
+                font-weight: bold;
             }
 
             .autocenter {
@@ -28,7 +29,11 @@
                 margin: auto;
                 border: 1px white solid;
                 border-radius: 50px;
-                /*background-color: rgba(0, 0, 0, 0.4);*/
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            h1 {
+                letter-spacing: 10px;
             }
 
             table, td {
@@ -216,7 +221,17 @@
                             echo "\t\t<td></td>\n";
                         } else {
                             $valor = $matrix[$rowPosition][$columPosition];
-                            echo "\t\t<td>$valor</td>\n";
+                            if ($valor == 1) {
+                                echo "<td><img src=\"./frigate.png\"></td>";
+                            }
+                            elseif ($valor == 2) {
+                                echo "\t\t<td><img src=\"./submarine.png\"></td>\n";
+                            }
+                            elseif ($valor == 3) {
+                                echo "\t\t<td><img src=\"./destroyer.png\"></td>\n";
+                            } else {
+                                echo "\t\t<td><img src=\"./carrier-icon.png\"></td>\n";
+                            }
                         }
                         
                     }
